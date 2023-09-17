@@ -1,88 +1,41 @@
-import { Container,Header,Statistic,Segment,Grid,Icon,Form,Button } from "semantic-ui-react";
+import { Container, Segment, Grid } from "semantic-ui-react";
 import './App.css';
+import MainHeader from "./components/MainHeader";
+import NewEntryForm from "./components/NewEntryForm";
+import DisplayBalanceAndIncomeAndExpenses from "./components/DisplayBalanceAndIncomeAndExpenses";
+import AllTransactions from "./components/AllTransactions";
 
 function App() {
   return (
     <Container>
       {/* Header */}
-        <Header as="h1" size=''>Budget</Header>
-      <Statistic size="small">
-        <Statistic.Label>Your Balance:</Statistic.Label>
-        <Statistic.Value>2250.34</Statistic.Value>
-      </Statistic>
+      <MainHeader title="Budget" type="h1" />
+      <DisplayBalanceAndIncomeAndExpenses size="small" label="Your Balance:" value="2250.34"/>
       {/* Segment1 */}
-        <Segment textAlign='center'>
-          <Grid columns={2} divided>
-            <Grid.Row>
-              <Grid.Column>
-                <Statistic size="tiny" color="green">
-                <Statistic.Label style={{textAlign:"left"}}>Income:</Statistic.Label>
-                <Statistic.Value>1,184</Statistic.Value>
-                </Statistic>
-              </Grid.Column>
-              <Grid.Column><Statistic size="tiny" color="red">
-                <Statistic.Label style={{textAlign:"left"}}>Expenses:</Statistic.Label>
-                <Statistic.Value>884</Statistic.Value>
-                </Statistic>
-                </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Segment>
+      <Segment textAlign='center'>
+        <Grid columns={2} divided>
+          <Grid.Row>
+            <Grid.Column>
+              <DisplayBalanceAndIncomeAndExpenses size="tiny" color="green" align="left" label="Income:" value="1,184" />
+            </Grid.Column>
+            <Grid.Column>
+              <DisplayBalanceAndIncomeAndExpenses size="tiny" color="red" align="left" label="Expenses:" value="884" />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Segment>
       {/* Header */}
-        <Header as='h3'>History</Header>
+      <MainHeader title="History" type="h3" />
       {/* Segment2*/}
-        <Segment color="red" textAlign="center">
-          <Grid columns={3} textAlign="right">
-            <Grid.Row>
-              <Grid.Column width={10} textAlign="left">Something else</Grid.Column>
-              <Grid.Column width={3} textAlign="right">$10.23K</Grid.Column>
-              <Grid.Column width={3}>
-                <Icon name="edit" bordered/>
-                <Icon name="trash" bordered/>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Segment>
+      <AllTransactions label="Something else" value="$10.23K" isExpense/>
       {/* Segment3*/}
-        <Segment color="green" textAlign="center">
-          <Grid columns={3} textAlign="right">
-            <Grid.Row>
-              <Grid.Column width={10} textAlign="left">Something</Grid.Column>
-              <Grid.Column width={3} textAlign="right">$1090.34</Grid.Column>
-              <Grid.Column width={3}>
-                <Icon name="edit" bordered/>
-                <Icon name="trash" bordered/>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Segment>
+      <AllTransactions label="Something" value="$1090.34" />
       {/* Segment4*/}
-        <Segment color="red" textAlign="center">
-          <Grid columns={3} textAlign="right">
-            <Grid.Row>
-              <Grid.Column width={10} textAlign="left">Something</Grid.Column>
-              <Grid.Column width={3} textAlign="right">$10K</Grid.Column>
-              <Grid.Column width={3}>
-                <Icon name="edit" bordered/>
-                <Icon name="trash" bordered/>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Segment>
+      <AllTransactions label="Something" value="$10K" isExpense/>      
       {/* Header */}
-        <Header as='h3'>Add new transactions</Header>
-        {/* Form */}
-        <Form unstackable>
-          <Form.Group>
-            <Form.Input icon='tags' width={12} label='Description' placeholder="new shiny thing"/>
-            <Form.Input icon='dollar' iconPosition="left" width={4} label='Value' placeholder="100.00"/>
-          </Form.Group>
-        </Form>
-        <Button.Group>
-          <Button>Cancel</Button>
-          <Button.Or/>
-          <Button primary>OK</Button>
-        </Button.Group>
+      <MainHeader title="Add new transactions" type="h3" />
+      {/* Form */}
+      <NewEntryForm />
     </Container>
   );
 }
